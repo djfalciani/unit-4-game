@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+     <!-- Bootstrap -->
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+     <!-- Custom Style Sheets -->
+     <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+     <!-- <link rel="stylesheet" href="assets/css/reset.css"> -->
+     <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div id="characterSelection"></div>
+        <div id="playerCharacter"></div>
+        <div id="opponentCharacters"></div>
+        <div id="defenderCharacter"></div>
+        <div id="test"></div>
+    </div>
+    
+    <script>
+        // Global Variables...
+        var avatars = ["Yoda","Obi-Wan Kenobi", "Darth Maul", "Darth Vadar"];
+        var playerAvatar = 0;
+        var opponents = [];
+
+
+        $(document).ready(function() {
+
+            // for (i=0; i < avatars.length; i++) {
+            //     switch (i) {
+            //         case 0:
+            //             var characterBtn = $("<button>");
+            //             characterBtn.addClass("avatar-Btn");
+            //             characterBtn.text("Character Test");
+            //             $("#characterSelection").append(characterBtn);
+            //             break;
+            //         case 1:
+            //             var playerBtn = $("<button>");
+            //             playerBtn.addClass("player-Btn");
+            //             playerBtn.text("Player Test");
+            //             $("#playerCharacter").append(playerBtn);
+            //             break;
+            //         case 2:
+            //             var opponentBtn = $("<button>");
+            //             opponentBtn.addClass("opponent-Btn");
+            //             opponentBtn.text("Opponent Test");
+            //             $("#opponentCharacters").append(opponentBtn);
+            //             // $("#test").append(opponentBtn);
+            //             break;
+            //         case 3: 
+            //             var defenderBtn = $("<button>");
+            //             defenderBtn.addClass("defender-Btn");
+            //             defenderBtn.text("Defender Test");
+            //             $("#defenderCharacter").append(defenderBtn);
+            //     }
+
+            // }
+            
+            // Display Char btns
+            for (i=0;i < avatars.length; i++) {
+                var characterBtn = $("<button>");
+                characterBtn.addClass("avatar-Btn");
+                characterBtn.attr("data-letter", avatars[i]);
+                characterBtn.text(avatars[i]);
+                $("#characterSelection").append(characterBtn);
+            }
+
+            // Click Avatar Btn...
+            $(".avatar-Btn").on("click", function() {
+                var characterClicked = $(this).attr("data-letter");
+                
+                // Hide Entire character Div...
+                $("#characterSelection").css("display", "none");
+
+                // Create Character btn inside the player Div...
+                createPlayerButton(characterClicked);
+
+                // Create array of opponents, which is the avatar array less the selected value...
+                for (i=0; i < avatars.length; i++) {
+                    if (avatars[i] != characterClicked) {
+                        opponents.push(avatars[i]);
+                    }
+                }
+                
+                // Create Opponent Buttons...
+                createOpponentButtons ();
+            });
+
+            // Click Opponent
+            $(".opponent-Btn").on("click", function() {
+                // var opponentClicked = $(this).attr("data-letter");
+                var opponentClicked = "Opponent Btn Clicked";
+                console.log(opponentClicked);
+                // var defenderBtn = $("<button>");
+                // var defender = $(this).attr("data-letter");
+                // console.log(defender);
+                // defenderBtn.addClass("defender-Btn");
+                // defenderBtn.attr("data-letter", defender);
+                // defenderBtn.text(defender);
+                // $("#defenderCharacter").append(defenderBtn);
+            });
+
+            // Click Player Btn
+            $(".player-Btn").on("click", function () {
+                console.log("Character Btn Clicked");
+            });
+
+            //Click Defender Btn
+            $(".defender-Btn").on("click", function () {
+                console.log("Defender Btn Clicked");
+            });
+
+            // Create Player Button
+            function createPlayerButton (characterClicked) {
+                var playerBtn = $("<button>");
+                playerBtn.addClass("player-Btn");
+                playerBtn.attr("data-letter", characterClicked);
+                playerBtn.text(characterClicked);
+                $("#playerCharacter").append(playerBtn);
+            }
+
+            // Make Opponent Buttons
+            function createOpponentButtons () {
+                // Make the Opponents buttons...
+                for (i=0; i < opponents.length; i++) {
+                    var opponentBtn = $("<button>");
+                    opponentBtn.addClass("opponent-Btn");
+                    opponentBtn.attr("data-letter", opponents[i]);
+                    opponentBtn.text(opponents[i]);
+                    $("#opponentCharacters").append(opponentBtn);
+                    // $("#test").append(opponentBtn);
+                }
+
+            }
+
+            // Make Defender Button
+            function createDefenderButton () {
+
+            }
+
+
+
+
+          
+        //   var captainPlanet = $(".player1");
+        //   $("#characterMenu").css("display", "none");
+
+        //   $("#test").on("click", function() {
+        //       // hide select char row, display character menu, and move player & opponents...
+        //       console.log("Test button Clicked");
+        //     //   $(".player1").animate({ top: "+=200px" }, "normal");
+        //     //   captainPlanet.animate({ opacity: "0.05" });
+        //     captainPlanet.animate({top: "+=200px"}, "normal");
+        //   });
+      });
+
+    </script>
+</body>
+</html>
