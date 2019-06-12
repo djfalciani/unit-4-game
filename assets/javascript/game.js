@@ -149,3 +149,60 @@ $(".setup").on("click", function() {
     $("#avatar1").append(cardTitle);
     $("#avatar1").append(cardText);
 });
+
+// Game Actions: 1) Select Avatar 2) Selected Opponent 3) Cyle through the attack phase...
+// Click Avatar Card - Clicking an Avatar Card will select them as the Player's Avatar (i.e. player)
+$(".avatarCard").on("click", function(){
+    // console.log(this);
+    createPlayerCard(this);
+    // alert(this.attr('SRC'));
+    // alert($("#Avatar1img").attr("src"));
+    // alert($(this).attr("src"));
+    // var imgsrc = $(this).attr('src'); 
+    // console.log(imgsrc);
+    // alert($('#myimg').attr('src'));
+});
+
+// $(document).on('click', ".avatarCard", function() {
+//     createPlayerCard(this);
+// });
+
+// Create Player Card...characterClicked
+function createPlayerCard (e) {
+    var playerCard = $("<div>");
+    var playerCardImage = $("<div>");
+    var playerCardSrc = $(e).attr('src');
+    console.log(e);
+    console.log(playerCardSrc);
+    console.log(this);
+
+
+    playerCard.addClass("card bg-dark text-white player-card");
+    playerCardImage.addClass("card-img-top");
+
+    $("#playerAvatar").append(playerCard);
+    //$("#playerAvatar").html("<img src='assets/images/220px-Darth_Maul.png' alt='' class='img-thumbnail avatarThumbnail' />");
+    // playerCard.html("<img src='assets/images/220px-Darth_Maul.png' alt='' class='img-thumbnail avatarThumbnail' />");
+    // <img src="assets/images/220px-Darth_Maul.png" class="card-img-top" alt="Darth Maul"></img>
+    // playerCardImage.attr({
+
+
+    // });
+    // $( "img" ).attr({
+    //     src: "/resources/hat.gif",
+    //     title: "jQuery",
+    //     alt: "jQuery Logo"
+    //   });
+    playerCard.append(playerCardImage);
+    
+    
+
+
+
+    // var playerBtn = $("<button>");
+    // playerBtn.addClass("player-Btn");
+    // playerBtn.attr("data-letter", characterClicked);
+    // playerBtn.text(characterClicked);
+    // $("#playerCharacter").append(playerBtn);
+}
+// Create Opponent Cards...

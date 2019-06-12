@@ -21,6 +21,7 @@
         <div id="opponentCharacters"></div>
         <div id="defenderCharacter"></div>
         <div id="test"></div>
+       
     </div>
     
     <script>
@@ -28,39 +29,12 @@
         var avatars = ["Yoda","Obi-Wan Kenobi", "Darth Maul", "Darth Vadar"];
         var playerAvatar = 0;
         var opponents = [];
+        var isDefender = false;
+        var defenderHp = 0;
+        var defenderCAP = 0;
 
 
         $(document).ready(function() {
-
-            // for (i=0; i < avatars.length; i++) {
-            //     switch (i) {
-            //         case 0:
-            //             var characterBtn = $("<button>");
-            //             characterBtn.addClass("avatar-Btn");
-            //             characterBtn.text("Character Test");
-            //             $("#characterSelection").append(characterBtn);
-            //             break;
-            //         case 1:
-            //             var playerBtn = $("<button>");
-            //             playerBtn.addClass("player-Btn");
-            //             playerBtn.text("Player Test");
-            //             $("#playerCharacter").append(playerBtn);
-            //             break;
-            //         case 2:
-            //             var opponentBtn = $("<button>");
-            //             opponentBtn.addClass("opponent-Btn");
-            //             opponentBtn.text("Opponent Test");
-            //             $("#opponentCharacters").append(opponentBtn);
-            //             // $("#test").append(opponentBtn);
-            //             break;
-            //         case 3: 
-            //             var defenderBtn = $("<button>");
-            //             defenderBtn.addClass("defender-Btn");
-            //             defenderBtn.text("Defender Test");
-            //             $("#defenderCharacter").append(defenderBtn);
-            //     }
-
-            // }
             
             // Display Char btns
             for (i=0;i < avatars.length; i++) {
@@ -92,19 +66,18 @@
                 createOpponentButtons ();
             });
 
-            // Click Opponent
-            $(".opponent-Btn").on("click", function() {
-                // var opponentClicked = $(this).attr("data-letter");
-                var opponentClicked = "Opponent Btn Clicked";
-                console.log(opponentClicked);
-                // var defenderBtn = $("<button>");
-                // var defender = $(this).attr("data-letter");
-                // console.log(defender);
-                // defenderBtn.addClass("defender-Btn");
-                // defenderBtn.attr("data-letter", defender);
-                // defenderBtn.text(defender);
-                // $("#defenderCharacter").append(defenderBtn);
+            // Click Opponent Verson 2- Ty stacks overflow. 
+            // If you dynamically add a class, need to use event delegation to register the event handler...
+            $(document).on('click', ".opponent-Btn", function() {
+                var defender = $(this).attr("data-letter");
+                // Remove the Clicked button from opponent Div..
+
+                // Create the Clicked button as a defender...
+                createDefenderButton(this);
+
+                
             });
+            
 
             // Click Player Btn
             $(".player-Btn").on("click", function () {
@@ -112,7 +85,8 @@
             });
 
             //Click Defender Btn
-            $(".defender-Btn").on("click", function () {
+            //$(".defender-Btn").on("click", function () {
+            $(document).on('click', ".defender-Btn", function() {
                 console.log("Defender Btn Clicked");
             });
 
@@ -140,8 +114,14 @@
             }
 
             // Make Defender Button
-            function createDefenderButton () {
-
+            function createDefenderButton (e) {
+                var defender = $(e).attr("data-letter");
+                var defenderBtn = $("<button>");
+                
+                defenderBtn.addClass("defender-Btn");
+                defenderBtn.attr("data-letter", defender);
+                defenderBtn.text(defender);
+                $("#defenderCharacter").append(defenderBtn);
             }
 
 
