@@ -9,7 +9,7 @@
      <!-- Bootstrap -->
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
      <!-- Custom Style Sheets -->
-     <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+     <link rel="stylesheet" href="assets/css/style.css">
      <!-- <link rel="stylesheet" href="assets/css/reset.css"> -->
      <!-- JQuery -->
     <script src="https://code.jquery.com/jquery.js"></script>
@@ -22,19 +22,117 @@
         <div id="defenderCharacter"></div>
         <div id="test"></div>
        
+        <div id="avatar-selection">
+            <!-- <div id="avatar-div" style="background: white; float: left;" class="img-thumbnail">
+                <div id="avatar-name">Yoda</div>
+                <div id="avatar-img">
+                    <img src="assets/images/170px-Yoda_Attack_of_the_Clones.png" alt="Yoda">
+                </div>
+                <div id="avatar-HP">100</div>
+            </div>
+            <div id="avatar-div">
+                <div id="avatar-name">Darth Vadar</div>
+                <div id="avatar-img">
+                    <img src="assets/images/Darth_Vader.jpg" alt="Darth Vadar">
+                </div>
+                <div id="avatar-HP">200</div>
+            </div> -->
+        </div>
+
+        <div id="avatar-player"></div>
+        <div id="avatar-opponent"></div>
+        <div id="avatar-defender"></div>
     </div>
     
     <script>
-        // Global Variables...
-        var avatars = ["Yoda","Obi-Wan Kenobi", "Darth Maul", "Darth Vadar"];
-        var playerAvatar = 0;
-        var opponents = [];
-        var isDefender = false;
-        var defenderHp = 0;
-        var defenderCAP = 0;
-
-
         $(document).ready(function() {
+                
+            // Global Variables...
+            var avatars = ["Yoda","Obi-Wan Kenobi", "Darth Maul", "Darth Vadar"];
+            var playerAvatar = 0;
+            var opponents = [];
+            var isDefender = false;
+            var defenderHp = 0;
+            var defenderCAP = 0;
+
+            var avatars =  {
+                avatar1 : {
+                    name: "Yoda",
+                    HP  : 100,
+                    AP  : 5,
+                    CAP : 6,
+                    Image : "assets/images/170px-Yoda_Attack_of_the_Clones.png"
+                },
+
+                avatar2 : {
+                    name: "Darth Maul",
+                    HP  : 120,
+                    AP  : 6,
+                    CAP : 5,
+                    Image : "assets/images/220px-Darth_Maul.png"
+                },
+
+                avatar3 : {
+                    name: "Obi-Wan Kenobi",
+                    HP  :   150,
+                    AP  :   8,
+                    CAP :   9,
+                    Image : "assets/images/obi-wan-kenobi-810x455.jpg"
+                },
+
+                avatar4 : {
+                    name: "Darth Vadar",
+                    HP  :   200,
+                    AP  :   10,
+                    CAP :   10,
+                    Image : "assets/images/Darth_Vader.jpg"
+                }
+            };
+
+            function renderAvatarDiv (xObject, renderArea) {
+
+            }
+
+            // loop through the Avatar objects, and create the Avatar Selection object
+            for (var property1 in avatars) {
+                console.log(avatars[property1].name);
+                console.log(avatars[property1].HP);
+                var xAvatarImgage = avatars[property1].Image;
+                
+                // avatar - selection
+                // avatar-div
+                    // avatar-name
+                    // avatar-img
+                    // avatar-HP
+                
+                var xAvatarDiv  = $("<div>");
+                var xAvatarName = $("<div>");
+                var xAvatarImg  = $("<img>");
+                var xAvatarHP   = $("<div>");
+
+                // add classes
+                xAvatarDiv.addClass("avatar-div");
+                xAvatarName.addClass("avatar-name");
+                xAvatarImg.addClass("avatar-img img-thumbnail");
+                
+                xAvatarHP.addClass("avatar-HP");
+
+                // add attributes
+                xAvatarDiv.attr("data-name",avatars[property1].name);
+                xAvatarImg.attr("src", avatars[property1].Image);
+
+                // add text for Title & HP
+                xAvatarName.text(avatars[property1].name);
+                xAvatarHP.text(avatars[property1].HP);
+
+                $("#avatar-selection").append(xAvatarDiv);
+                xAvatarDiv.append(xAvatarName).append(xAvatarImg).append(xAvatarHP);
+
+                $("#avatar-img").html("<img src='" && xAvatarImgage && "'/>");
+                
+            }
+
+
             
             // Display Char btns
             for (i=0;i < avatars.length; i++) {

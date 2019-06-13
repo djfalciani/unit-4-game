@@ -26,4 +26,18 @@ body, html {
     opacity: 0.3;
   }
 
+  .avatar-selection {
+    background: white;
+  }
+
+  .avatar-div, .avatar-img  {
+    background: white;
+    border: 2px solid white;
+    /* color: white; */
+    height: 150px;
+    widows: 125px;
+    float: left;
+    padding: 10px;
+  }
+
   /* .img-thumbnail {padding:.25rem;background-color:#fff;border-radius:.25rem;max-width:100%;height:auto} */

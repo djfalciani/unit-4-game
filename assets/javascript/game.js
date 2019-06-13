@@ -1,31 +1,65 @@
 // Globabl Variables
-avatar1 = {
-    name: "Yoda",
-    HP  : 100,
-    AP  : 5,
-    CAP : 6
+var avatars =  {
+    avatar1 : {
+        name: "Yoda",
+        HP  : 100,
+        AP  : 5,
+        CAP : 6,
+        Image : "assets/images/170px-Yoda_Attack_of_the_Clones.png"
+    },
+
+    avatar2 : {
+        name: "Darth Maul",
+        HP  : 120,
+        AP  : 6,
+        CAP : 5,
+        Image : "assets/images/220px-Darth_Maul.png"
+    },
+
+    avatar3 : {
+        name: "Obi-Wan Kenobi",
+        HP  :   150,
+        AP  :   8,
+        CAP :   9,
+        Image : "assets/images/obi-wan-kenobi-810x455.jpg"
+    },
+
+    avatar4 : {
+        name: "Darth Vadar",
+        HP  :   200,
+        AP  :   10,
+        CAP :   10,
+        Image : "assets/images/Darth_Vader.jpg"
+    }
 };
 
-avatar2 = {
-    name: "Darth Maul",
-    HP  : 120,
-    AP  : 6,
-    CAP : 5
-};
+// avatar1 = {
+//     name: "Yoda",
+//     HP  : 100,
+//     AP  : 5,
+//     CAP : 6
+// };
 
-avatar3 = {
-    name: "Obi-Wan Kenobi",
-    HP  :   150,
-    AP  :   8,
-    CAP :   9
-};
+// avatar2 = {
+//     name: "Darth Maul",
+//     HP  : 120,
+//     AP  : 6,
+//     CAP : 5
+// };
 
-avatar4 = {
-    name: "Darth Vadar",
-    HP  :   200,
-    AP  :   10,
-    CAP :   10
-};
+// avatar3 = {
+//     name: "Obi-Wan Kenobi",
+//     HP  :   150,
+//     AP  :   8,
+//     CAP :   9
+// };
+
+// avatar4 = {
+//     name: "Darth Vadar",
+//     HP  :   200,
+//     AP  :   10,
+//     CAP :   10
+// };
 
 var playMode = false;
 
@@ -35,6 +69,28 @@ var attacks = 0;
 
 var advisaryHP = 0;
 var advisaryCAP = 0;
+
+// At Start Fill the Card Detail with Data from Avatar Object.
+for (var key in avatars) {
+    // Create Elements
+    var cardTitle = $("<h5>");
+    var cardText = $("<p>");
+
+    // 3. Add Class
+    cardTitle.addClass("card-title");
+    cardText.addClass("card-text");
+
+    // 4. Add Data Attribute for Avatar Num...
+    cardTitle.attr("data-avatarNum", "avatar1");
+
+    // 5. Fill h5 tag with object's name value
+    cardTitle.text(avatars[key].name);
+    cardText.text(avatars[key].HP);
+
+    // 6. Finally, append each "letterBtn" to the "#buttons" div (provided).
+    $("#avatar1").append(cardTitle);
+    $("#avatar1").append(cardText);
+}
 
 // When User selects an avatar, move their HP & AP into global variables for tracking...
 function initializePlayer (avatar) {
